@@ -3,30 +3,55 @@ Tutorial to integrate Ansible provisioning with Amazon EC2 platform, using an Ub
 
 # Install:
 - Install Ansible last version:
-  sudo apt-get update
-  sudo apt-get install software-properties-common
-  sudo apt-add-repository ppa:ansible/ansible
-  sudo apt-get update
-  sudo apt-get install ansible
-
+```sh
+$ sudo apt-get update
+$ sudo apt-get install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt-get update
+$ sudo apt-get install ansible
+```
 - Install boto (python lib):
-  sudo apt-get install python-pip
-	pip install -U boto
-
+```sh
+$ sudo apt-get install python-pip
+$ pip install -U boto
+```
 - Clone the repository inside /etc/ansible. Warning: it will replace your ansible files;
 
 - Create the ssh key (~/.ssh/) and import it to EC2. Note the ssh key name (e.g. ssh-keygen -t rsa -f ~/.ssh/id_ansible, if you use a different name, change it inside /etc/ansible/hosts);
 
 - Change the file /etc/ansible/ec2_creation/vars/all.yml with the information 
-about your EC2 environment (there's a example in /etc/ansible/vars/example.txt);
+about your EC2 environment;
+```yml
+---
+ec2_config:
+    region: us-west-2
+    zone: us-west-2c
+    #Change it according the name that you put in Amazon
+    keypair: ansible
+    instance_type: t1.micro
+    #It create a Ubuntu 14.04LTS
+    image: ami-6989a659
+    #Your subnet
+    vpc_subnet_id: subnet-e7b7f8be
+    #An security group name created at Amazon
+    group: [lamp]
+    assign_public_ip: true
+    volume_size: 8
+    instance_tag_name: TagNomeApp
+    remote_user: ubuntu
+    #The path to your local ssh file
+    ssh_path: ~/.ssh/id_ansible
+```
 
 - Export your Amazon credential to to environment variables;
-  export AWS_ACCESS_KEY_ID=YOURKEYID
-  export AWS_SECRET_ACCESS_KEY=YOUSECRETKEY
-
-- Inside /etc/ansible/ec2_creation Run the command: ansible-playbook -i 
-hosts playbook.yml --private-key=[your ssh key file] -vvvv
-
+```sh
+$ export AWS_ACCESS_KEY_ID=YOURKEYID
+$ export AWS_SECRET_ACCESS_KEY=YOUSECRETKEY
+```
+- Inside /etc/ansible/ec2_creation Run the command: 
+```sh
+$ ansible-playbook -i hosts playbook.yml --private-key=[your ssh key file] -vvvv
+```
 # More information:
 Look this video for more information (PT-BR) or open an issue.
 
