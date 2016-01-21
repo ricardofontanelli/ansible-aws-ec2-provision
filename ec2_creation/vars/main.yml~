@@ -1,3 +1,0 @@
----
-# vars file for ec2_creation
-ansible_ssh_user=ubuntu
