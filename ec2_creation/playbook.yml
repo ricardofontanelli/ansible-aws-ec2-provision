@@ -1,0 +1,27 @@
+#Create the instance
+- hosts: localhost
+  user: ubuntu
+  connection: local
+  gather_facts: false
+  vars_files:
+    - vars/all.yml
+  roles:
+    - ec2_creation
+
+- hosts: ec2hosts
+  remote_user: ubuntu
+  gather_facts: true
+  #sudo: yes >> become: yes
+  become: yes
+  vars_files:
+    - vars/all.yml
+  roles:
+    - server
+    - apache
+    - mysql
+    - mongodb
+    - sqlite
+    - redis
+    - php
+    - composer
+    - app

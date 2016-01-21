@@ -1,0 +1,57 @@
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+changed: [localhost]
+
+TASK [ec2_creation : Debug instances] ******************************************
+ok: [localhost] => {
+    "msg": {
+        "ami_launch_index": "0", 
+        "architecture": "x86_64", 
+        "block_device_mapping": {
+            "/dev/sda1": {
+                "delete_on_termination": true, 
+                "status": "attached", 
+                "volume_id": "vol-2e0c01c8"
+            }
+        }, 
+        "dns_name": "ec2-54-200-46-248.us-west-2.compute.amazonaws.com", 
+        "ebs_optimized": false, 
+        "groups": {
+            "sg-c139d6a6": "lamp"
+        }, 
+        "hypervisor": "xen", 
+        "id": "i-eb951f31", 
+        "image_id": "ami-6989a659", 
+        "instance_type": "t1.micro", 
+        "kernel": "aki-fc8f11cc", 
+        "key_name": "ansible", 
+        "launch_time": "2016-01-20T04:16:23.000Z", 
+        "placement": "us-west-2c", 
+        "private_dns_name": "ip-172-31-12-72.us-west-2.compute.internal", 
+        "private_ip": "172.31.12.72", 
+        "public_dns_name": "ec2-54-200-46-248.us-west-2.compute.amazonaws.com", 
+        "public_ip": "54.200.46.248", 
+        "ramdisk": null, 
+        "region": "us-west-2", 
+        "root_device_name": "/dev/sda1", 
+        "root_device_type": "ebs", 
+        "state": "running", 
+        "state_code": 16, 
+        "tags": {
+            "Name": "blog25"
+        }, 
+        "tenancy": "default", 
+        "virtualization_type": "paravirtual"
+    }
+}
+
+TASK [ec2_creation : Wait for instances to listen on port 22] ******************
+
+PLAY ***************************************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0   
+

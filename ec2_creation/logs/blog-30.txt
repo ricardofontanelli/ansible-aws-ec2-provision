@@ -1,0 +1,9 @@
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+fatal: [localhost]: FAILED! => {"changed": false, "failed": true, "msg": "No handler was ready to authenticate. 1 handlers were checked. ['HmacAuthV4Handler'] Check your credentials"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=0    changed=0    unreachable=0    failed=1   
+

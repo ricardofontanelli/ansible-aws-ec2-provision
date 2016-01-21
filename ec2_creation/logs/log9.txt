@@ -1,0 +1,228 @@
+ERROR: vars from '/etc/ansible/ec2_creation/vars/main.yml' are not a dict
+
+PLAY [localhost] ************************************************************** 
+
+TASK: [ec2_creation | Create instance] **************************************** 
+changed: [localhost]
+
+TASK: [ec2_creation | Debug instances] **************************************** 
+ok: [localhost] => {
+    "item": "", 
+    "msg": "[{u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-7-17.us-west-2.compute.internal', u'public_ip': u'54.200.48.211', u'private_ip': u'172.31.7.17', u'id': u'i-5821aa82', u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'public_dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'state_code': 16, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:03:02.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'}]"
+}
+
+TASK: [ec2_creation | Wait for SSH to come up] ******************************** 
+ok: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-7-17.us-west-2.compute.internal', u'public_ip': u'54.200.48.211', u'private_ip': u'172.31.7.17', u'id': u'i-5821aa82', u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'public_dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'state_code': 16, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:03:02.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+TASK: [ec2_creation | Add new instance to host group] ************************* 
+ok: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-7-17.us-west-2.compute.internal', u'public_ip': u'54.200.48.211', u'private_ip': u'172.31.7.17', u'id': u'i-5821aa82', u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'public_dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'state_code': 16, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-48-211.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:03:02.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+PLAY [ec2hosts] *************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+fatal: [54.200.48.211] => SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/root/teste.retry
+
+54.200.48.211              : ok=0    changed=0    unreachable=1    failed=0   
+localhost                  : ok=4    changed=1    unreachable=0    failed=0   
+
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+changed: [localhost]
+
+TASK [ec2_creation : Debug instances] ******************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "ami_launch_index": "0", 
+            "architecture": "x86_64", 
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true, 
+                    "status": "attached", 
+                    "volume_id": "vol-71e1e397"
+                }
+            }, 
+            "dns_name": "ec2-54-201-168-9.us-west-2.compute.amazonaws.com", 
+            "ebs_optimized": false, 
+            "groups": {
+                "sg-56f41b31": "default", 
+                "sg-c139d6a6": "lamp"
+            }, 
+            "hypervisor": "xen", 
+            "id": "i-b83fb462", 
+            "image_id": "ami-a850c898", 
+            "instance_type": "t1.micro", 
+            "kernel": "aki-fc37bacc", 
+            "key_name": "ansible", 
+            "launch_time": "2016-01-19T22:31:47.000Z", 
+            "placement": "us-west-2c", 
+            "private_dns_name": "ip-172-31-5-65.us-west-2.compute.internal", 
+            "private_ip": "172.31.5.65", 
+            "public_dns_name": "ec2-54-201-168-9.us-west-2.compute.amazonaws.com", 
+            "public_ip": "54.201.168.9", 
+            "ramdisk": null, 
+            "region": "us-west-2", 
+            "root_device_name": "/dev/sda1", 
+            "root_device_type": "ebs", 
+            "state": "running", 
+            "state_code": 16, 
+            "tags": {
+                "Name": "blog5"
+            }, 
+            "tenancy": "default", 
+            "virtualization_type": "paravirtual"
+        }
+    ]
+}
+
+TASK [ec2_creation : Wait for SSH to come up] **********************************
+ok: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-5-65.us-west-2.compute.internal', u'public_ip': u'54.201.168.9', u'private_ip': u'172.31.5.65', u'id': u'i-b83fb462', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-71e1e397'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-56f41b31': u'default', u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-201-168-9.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-201-168-9.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:31:47.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+TASK [ec2_creation : Add new instance to host group] ***************************
+changed: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-5-65.us-west-2.compute.internal', u'public_ip': u'54.201.168.9', u'private_ip': u'172.31.5.65', u'id': u'i-b83fb462', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-71e1e397'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-56f41b31': u'default', u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-201-168-9.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-201-168-9.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:31:47.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+fatal: [54.201.168.9]: UNREACHABLE! => {"changed": false, "msg": "ERROR! SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+54.201.168.9               : ok=0    changed=0    unreachable=1    failed=0   
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+changed: [localhost]
+
+TASK [ec2_creation : Debug instances] ******************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "ami_launch_index": "0", 
+            "architecture": "x86_64", 
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true, 
+                    "status": "attached", 
+                    "volume_id": "vol-25e5e7c3"
+                }
+            }, 
+            "dns_name": "ec2-54-200-41-251.us-west-2.compute.amazonaws.com", 
+            "ebs_optimized": false, 
+            "groups": {
+                "sg-56f41b31": "default", 
+                "sg-c139d6a6": "lamp"
+            }, 
+            "hypervisor": "xen", 
+            "id": "i-d133b80b", 
+            "image_id": "ami-a850c898", 
+            "instance_type": "t1.micro", 
+            "kernel": "aki-fc37bacc", 
+            "key_name": "ansible", 
+            "launch_time": "2016-01-19T22:39:32.000Z", 
+            "placement": "us-west-2c", 
+            "private_dns_name": "ip-172-31-14-185.us-west-2.compute.internal", 
+            "private_ip": "172.31.14.185", 
+            "public_dns_name": "ec2-54-200-41-251.us-west-2.compute.amazonaws.com", 
+            "public_ip": "54.200.41.251", 
+            "ramdisk": null, 
+            "region": "us-west-2", 
+            "root_device_name": "/dev/sda1", 
+            "root_device_type": "ebs", 
+            "state": "running", 
+            "state_code": 16, 
+            "tags": {
+                "Name": "blog5"
+            }, 
+            "tenancy": "default", 
+            "virtualization_type": "paravirtual"
+        }
+    ]
+}
+
+TASK [ec2_creation : Wait for SSH to come up] **********************************
+ok: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-14-185.us-west-2.compute.internal', u'public_ip': u'54.200.41.251', u'private_ip': u'172.31.14.185', u'id': u'i-d133b80b', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-25e5e7c3'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-56f41b31': u'default', u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-200-41-251.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-41-251.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:39:32.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+TASK [ec2_creation : Add new instance to host group] ***************************
+changed: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-14-185.us-west-2.compute.internal', u'public_ip': u'54.200.41.251', u'private_ip': u'172.31.14.185', u'id': u'i-d133b80b', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-25e5e7c3'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-56f41b31': u'default', u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-200-41-251.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-41-251.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:39:32.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+fatal: [54.200.41.251]: UNREACHABLE! => {"changed": false, "msg": "ERROR! SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+54.200.41.251              : ok=0    changed=0    unreachable=1    failed=0   
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+changed: [localhost]
+
+TASK [ec2_creation : Debug instances] ******************************************
+ok: [localhost] => {
+    "msg": [
+        {
+            "ami_launch_index": "0", 
+            "architecture": "x86_64", 
+            "block_device_mapping": {
+                "/dev/sda1": {
+                    "delete_on_termination": true, 
+                    "status": "attached", 
+                    "volume_id": "vol-0ee9ebe8"
+                }
+            }, 
+            "dns_name": "ec2-54-200-39-81.us-west-2.compute.amazonaws.com", 
+            "ebs_optimized": false, 
+            "groups": {
+                "sg-c139d6a6": "lamp"
+            }, 
+            "hypervisor": "xen", 
+            "id": "i-9933b843", 
+            "image_id": "ami-a850c898", 
+            "instance_type": "t1.micro", 
+            "kernel": "aki-fc37bacc", 
+            "key_name": "ansible", 
+            "launch_time": "2016-01-19T22:46:16.000Z", 
+            "placement": "us-west-2c", 
+            "private_dns_name": "ip-172-31-0-38.us-west-2.compute.internal", 
+            "private_ip": "172.31.0.38", 
+            "public_dns_name": "ec2-54-200-39-81.us-west-2.compute.amazonaws.com", 
+            "public_ip": "54.200.39.81", 
+            "ramdisk": null, 
+            "region": "us-west-2", 
+            "root_device_name": "/dev/sda1", 
+            "root_device_type": "ebs", 
+            "state": "running", 
+            "state_code": 16, 
+            "tags": {
+                "Name": "blog5"
+            }, 
+            "tenancy": "default", 
+            "virtualization_type": "paravirtual"
+        }
+    ]
+}
+
+TASK [ec2_creation : Wait for SSH to come up] **********************************
+ok: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-0-38.us-west-2.compute.internal', u'public_ip': u'54.200.39.81', u'private_ip': u'172.31.0.38', u'id': u'i-9933b843', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-0ee9ebe8'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-200-39-81.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-39-81.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:46:16.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+TASK [ec2_creation : Add new instance to host group] ***************************
+changed: [localhost] => (item={u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-0-38.us-west-2.compute.internal', u'public_ip': u'54.200.39.81', u'private_ip': u'172.31.0.38', u'id': u'i-9933b843', u'ebs_optimized': False, u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'block_device_mapping': {u'/dev/sda1': {u'status': u'attached', u'delete_on_termination': True, u'volume_id': u'vol-0ee9ebe8'}}, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'tenancy': u'default', u'groups': {u'sg-c139d6a6': u'lamp'}, u'public_dns_name': u'ec2-54-200-39-81.us-west-2.compute.amazonaws.com', u'state_code': 16, u'tags': {u'Name': u'blog5'}, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-39-81.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T22:46:16.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'})
+
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+

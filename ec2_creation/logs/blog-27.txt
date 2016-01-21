@@ -1,0 +1,254 @@
+
+PLAY ***************************************************************************
+
+TASK [ec2_creation : Create instance] ******************************************
+changed: [localhost]
+
+TASK [ec2_creation : Debug instances] ******************************************
+ok: [localhost] => {
+    "msg": {
+        "ami_launch_index": "0", 
+        "architecture": "x86_64", 
+        "block_device_mapping": {
+            "/dev/sda1": {
+                "delete_on_termination": true, 
+                "status": "attached", 
+                "volume_id": "vol-ee787508"
+            }
+        }, 
+        "dns_name": "ec2-54-201-242-35.us-west-2.compute.amazonaws.com", 
+        "ebs_optimized": false, 
+        "groups": {
+            "sg-c139d6a6": "lamp"
+        }, 
+        "hypervisor": "xen", 
+        "id": "i-9f921845", 
+        "image_id": "ami-6989a659", 
+        "instance_type": "t1.micro", 
+        "kernel": "aki-fc8f11cc", 
+        "key_name": "ansible", 
+        "launch_time": "2016-01-20T03:40:32.000Z", 
+        "placement": "us-west-2c", 
+        "private_dns_name": "ip-172-31-0-115.us-west-2.compute.internal", 
+        "private_ip": "172.31.0.115", 
+        "public_dns_name": "ec2-54-201-242-35.us-west-2.compute.amazonaws.com", 
+        "public_ip": "54.201.242.35", 
+        "ramdisk": null, 
+        "region": "us-west-2", 
+        "root_device_name": "/dev/sda1", 
+        "root_device_type": "ebs", 
+        "state": "running", 
+        "state_code": 16, 
+        "tags": {
+            "Name": "blog25"
+        }, 
+        "tenancy": "default", 
+        "virtualization_type": "paravirtual"
+    }
+}
+
+TASK [ec2_creation : Wait for instances to listen on port 22] ******************
+ok: [localhost]
+
+TASK [ec2_creation : Add new instance to host group] ***************************
+changed: [localhost] => (item=ec2_instances.instances)
+
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+ok: [54.201.242.35]
+
+TASK [server : Update apt] *****************************************************
+ok: [54.201.242.35]
+
+TASK [server : Install System Packages] ****************************************
+changed: [54.201.242.35] => (item=[u'curl', u'wget', u'python-software-properties'])
+
+TASK [server : Install Extra Packages] *****************************************
+changed: [54.201.242.35] => (item=[u'vim', u'git'])
+
+TASK [server : Configure the timezone] *****************************************
+changed: [54.201.242.35]
+
+TASK [server : More Configure the timezone] ************************************
+changed: [54.201.242.35]
+
+TASK [server : Set default system language pack] *******************************
+changed: [54.201.242.35]
+
+TASK [apache : Install Apache] *************************************************
+changed: [54.201.242.35]
+
+TASK [apache : Install Apache Modules] *****************************************
+changed: [54.201.242.35] => (item=rewrite)
+changed: [54.201.242.35] => (item=vhost_alias)
+changed: [54.201.242.35] => (item=headers)
+changed: [54.201.242.35] => (item=expires)
+ok: [54.201.242.35] => (item=filter)
+
+TASK [apache : command] ********************************************************
+changed: [54.201.242.35]
+
+TASK [apache : Change default apache2.4 site] **********************************
+changed: [54.201.242.35]
+
+TASK [apache : Change default apache2.2 site] **********************************
+skipping: [54.201.242.35]
+
+TASK [apache : Add index.php file at /var/www/] ********************************
+changed: [54.201.242.35]
+
+TASK [mysql : command] *********************************************************
+changed: [54.201.242.35]
+
+TASK [mysql : mysql | Install MySQL Packages] **********************************
+changed: [54.201.242.35] => (item=[u'mysql-server', u'mysql-client', u'python-mysqldb'])
+
+TASK [mysql : mysql | Update root password for all root accounts] **************
+changed: [54.201.242.35] => (item=ip-172-31-0-115)
+changed: [54.201.242.35] => (item=127.0.0.1)
+changed: [54.201.242.35] => (item=::1)
+changed: [54.201.242.35] => (item=localhost)
+
+TASK [mysql : mysql | Create databases] ****************************************
+changed: [54.201.242.35]
+
+TASK [mysql : mysql | Import dump] *********************************************
+skipping: [54.201.242.35]
+
+TASK [mysql : mysql | Ensure anonymous users are not in the database] **********
+ok: [54.201.242.35] => (item=localhost)
+ok: [54.201.242.35] => (item=ip-172-31-0-115)
+
+TASK [mysql : mysql | Create users] ********************************************
+changed: [54.201.242.35]
+
+TASK [mongodb : MongoDB | Fetch 10Gen signing key] *****************************
+changed: [54.201.242.35]
+
+TASK [mongodb : MongoDB | Add 10Gen repository] ********************************
+changed: [54.201.242.35]
+
+TASK [mongodb : MongoDB | Install latest MongoDB release] **********************
+changed: [54.201.242.35]
+
+TASK [mongodb : MongoDB | Create default configuration template] ***************
+changed: [54.201.242.35]
+
+TASK [mongodb : MongoDB | Insure deamon is running correctly] ******************
+ok: [54.201.242.35]
+
+TASK [sqlite : Install SQLite package] *****************************************
+changed: [54.201.242.35]
+
+TASK [redis : Include OS-specific variables.] **********************************
+ok: [54.201.242.35]
+
+TASK [redis : include] *********************************************************
+skipping: [54.201.242.35]
+
+TASK [redis : include] *********************************************************
+included: /etc/ansible/ec2_creation/roles/redis/tasks/setup-Debian.yml for 54.201.242.35
+
+TASK [redis : Ensure redis is installed.] **************************************
+changed: [54.201.242.35]
+
+TASK [redis : Ensure Redis is configured.] *************************************
+changed: [54.201.242.35]
+
+TASK [redis : Ensure redis is running and enabled on boot.] ********************
+ok: [54.201.242.35]
+
+TASK [php : Add ppa Repository] ************************************************
+changed: [54.201.242.35]
+
+TASK [php : Update apt] ********************************************************
+ok: [54.201.242.35]
+
+TASK [php : Install php5] ******************************************************
+changed: [54.201.242.35]
+
+TASK [php : Install php5-fpm] **************************************************
+changed: [54.201.242.35]
+
+TASK [php : Install PHP Packages] **********************************************
+changed: [54.201.242.35] => (item=[u'php5-cli', u'php5-intl', u'php5-mcrypt', u'php5-curl', u'php5-cgi', u'php5-common', u'php5-fpm', u'php5-gd', u'php5-geoip', u'php5-imap', u'php5-memcache', u'php5-memcached', u'php5-snmp', u'php5-ldap', u'php-pear', u'php5-mysql', u'php5-sqlite', u'php5-mongo'])
+
+TASK [php : include] ***********************************************************
+included: /etc/ansible/ec2_creation/roles/php/tasks/configure.yml for 54.201.242.35
+
+TASK [php : stat] **************************************************************
+ok: [54.201.242.35]
+
+TASK [php : stat] **************************************************************
+ok: [54.201.242.35]
+
+TASK [php : stat] **************************************************************
+ok: [54.201.242.35]
+
+TASK [php : include] ***********************************************************
+included: /etc/ansible/ec2_creation/roles/php/tasks/php-fpm.yml for 54.201.242.35
+
+TASK [php : Set permissions on socket - owner] *********************************
+ok: [54.201.242.35]
+
+TASK [php : Set permissions on socket - group] *********************************
+ok: [54.201.242.35]
+
+TASK [php : Set permissions on socket - mode] **********************************
+changed: [54.201.242.35]
+
+TASK [php : ensure timezone is set in fpm php.ini] *****************************
+changed: [54.201.242.35]
+
+TASK [php : enabling opcache] **************************************************
+changed: [54.201.242.35]
+
+TASK [php : include] ***********************************************************
+included: /etc/ansible/ec2_creation/roles/php/tasks/php-cli.yml for 54.201.242.35
+
+TASK [php : ensure timezone is set in cli php.ini] *****************************
+changed: [54.201.242.35]
+
+TASK [php : enabling opcache cli] **********************************************
+changed: [54.201.242.35]
+
+TASK [php : include] ***********************************************************
+included: /etc/ansible/ec2_creation/roles/php/tasks/mod-php.yml for 54.201.242.35
+
+TASK [php : ensure timezone is set in apache2 php.ini] *************************
+changed: [54.201.242.35]
+
+TASK [php : enabling opcache] **************************************************
+changed: [54.201.242.35]
+
+TASK [php : include] ***********************************************************
+included: /etc/ansible/ec2_creation/roles/php/tasks/pecl.yml for 54.201.242.35
+
+TASK [php : Install] ***********************************************************
+skipping: [54.201.242.35]
+
+TASK [php : Install Package] ***************************************************
+
+TASK [php : Create extension .ini file] ****************************************
+
+TASK [php : Enable extension] **************************************************
+
+TASK [composer : Install Composer] *********************************************
+changed: [54.201.242.35]
+
+TASK [app : Create custom bash] ************************************************
+fatal: [54.201.242.35]: FAILED! => {"changed": false, "failed": true, "msg": "IOError: [Errno 2] No such file or directory: u'/etc/ansible/ec2_creation/bash.tpl'"}
+
+RUNNING HANDLER [apache : restart apache] **************************************
+
+RUNNING HANDLER [mongodb : mongodb-restart] ************************************
+
+RUNNING HANDLER [redis : restart redis] ****************************************
+
+RUNNING HANDLER [php : restart php5-fpm] ***************************************
+
+PLAY RECAP *********************************************************************
+54.201.242.35              : ok=52   changed=34   unreachable=0    failed=1   
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+

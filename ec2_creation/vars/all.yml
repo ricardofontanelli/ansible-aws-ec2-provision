@@ -1,0 +1,45 @@
+---
+ec2:
+    region: us-west-2
+    zone: us-west-2c
+    keypair: 'ansible'    
+    instance_type: t1.micro
+    image: ami-6989a659
+    vpc_subnet_id: subnet-e7b7f8be
+    group: [lamp]
+    assign_public_ip: true
+    volume_size: 8
+    instance_tag_name: 'TagNomeApp'
+    remote_user: ubuntu
+    ssh_path: '~/.ssh/id_ansible'
+server:
+    install: '1'
+    packages: [vim, git]
+    timezone: America/Sao_Paulo
+    locale: pt_BR.UTF-8
+apache:
+    install: '1'
+    docroot: /var/www/
+    servername: myApp.dev
+mysql:
+    install: '1'
+    root_password: 123456
+    database: dbec2teste
+    user: ec2test
+    password: 123456
+    dump: ''
+mongodb:
+    install: '1'
+sqlite:
+    install: '1'
+redis:
+    install: '1'
+    port: '6379'
+    bind: '127.0.0.1'
+php:
+    install: '1'
+    ppa: php5-5.6
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-cgi, php5-common, php5-fpm, php5-gd, php5-geoip, php5-imap, php5-memcache, php5-memcached, php5-snmp, php5-ldap, php-pear, php5-mysql, php5-sqlite, php5-mongo]
+    peclpackages: [PDO, PDO_ODBC, PDO_DBLIB, PDO_MYSQL, PDO_PGSQL, PDO_SQLITE, redis, bz2]
+composer:
+    install: '1'

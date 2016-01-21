@@ -1,0 +1,22 @@
+
+PLAY [localhost] ************************************************************** 
+
+TASK: [ec2_creation | Create instance] **************************************** 
+changed: [localhost]
+
+TASK: [ec2_creation | Debug instances] **************************************** 
+ok: [localhost] => {
+    "item": "", 
+    "msg": "[{u'kernel': u'aki-fc37bacc', u'root_device_type': u'ebs', u'private_dns_name': u'ip-172-31-2-59.us-west-2.compute.internal', u'public_ip': u'54.200.50.229', u'private_ip': u'172.31.2.59', u'id': u'i-90018a4a', u'state': u'running', u'virtualization_type': u'paravirtual', u'architecture': u'x86_64', u'ramdisk': None, u'key_name': u'ansible', u'image_id': u'ami-a850c898', u'public_dns_name': u'ec2-54-200-50-229.us-west-2.compute.amazonaws.com', u'state_code': 16, u'placement': u'us-west-2c', u'ami_launch_index': u'0', u'dns_name': u'ec2-54-200-50-229.us-west-2.compute.amazonaws.com', u'region': u'us-west-2', u'launch_time': u'2016-01-19T20:27:58.000Z', u'instance_type': u't1.micro', u'root_device_name': u'/dev/sda1', u'hypervisor': u'xen'}]"
+}
+
+TASK: [ec2_creation | Wait for SSH to come up] ******************************** 
+fatal: [localhost] => One or more undefined variables: 'str object' has no attribute 'public_ip'
+
+FATAL: all hosts have already failed -- aborting
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/root/teste.retry
+
+localhost                  : ok=2    changed=1    unreachable=1    failed=0   
+
