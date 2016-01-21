@@ -2,16 +2,16 @@
 ec2_config:
     region: us-west-2
     zone: us-west-2c
-    keypair: ansible
+    keypair: #-- key-par-name --#
     instance_type: t1.micro
     image: ami-6989a659
-    vpc_subnet_id: subnet-e7b7f8be
-    group: [lamp]
+    vpc_subnet_id: #-- sub-net-name --#
+    group: [ #-- security-group-name --#]
     assign_public_ip: true
     volume_size: 8
-    instance_tag_name: TagNomeApp
+    instance_tag_name: TagAppName
     remote_user: ubuntu
-    ssh_path: ~/.ssh/id_ansible
+    ssh_path: #-- path to your ssh key e.g.: ~/.ssh/id_ansible --#
 server:
     install: '1'
     packages: [vim, git]
