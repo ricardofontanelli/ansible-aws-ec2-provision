@@ -1,3 +1,4 @@
 /aws
 /group_vars
 /logs/*/
+.gitignore
