@@ -17,10 +17,12 @@ $ pip install -U boto
 ```
 - Clone the repository inside /etc/ansible. Warning: it will replace your ansible files;
 
-- Create the ssh key (~/.ssh/) and import it to EC2. Note the ssh key name (e.g. ssh-keygen -t rsa -f ~/.ssh/id_ansible, if you use a different name, change it inside /etc/ansible/hosts);
+- Create the ssh key (~/.ssh/id_ansible) and import it to EC2. Note the ssh key name, if you use a different name, change it inside /etc/ansible/hosts;
+```sh
+$ ssh-keygen -t rsa -f ~/.ssh/id_ansible
+```
 
-- Change the file /etc/ansible/ec2_creation/vars/all.yml with the information 
-about your EC2 environment;
+- Change the file /etc/ansible/ec2_creation/vars/all.yml according the information about your EC2 environment, for example:
 ```yml
 ---
 ec2_config:
@@ -43,7 +45,7 @@ ec2_config:
     ssh_path: ~/.ssh/id_ansible
 ```
 
-- Export your Amazon credential to to environment variables;
+- Export your Amazon credential to environment variables;
 ```sh
 $ export AWS_ACCESS_KEY_ID=YOURKEYID
 $ export AWS_SECRET_ACCESS_KEY=YOUSECRETKEY
@@ -52,7 +54,6 @@ $ export AWS_SECRET_ACCESS_KEY=YOUSECRETKEY
 ```sh
 $ ansible-playbook -i hosts playbook.yml --private-key=[your ssh key file] -vvvv
 ```
+
 # More information:
 Look this video for more information (PT-BR) or open an issue.
-
-
