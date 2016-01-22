@@ -43,6 +43,4 @@
   notify: restart apache
               
 - name: Add index.php file at /var/www/
-  sudo: yes
-  template: src=index.tpl dest=/var/www/index.php
-  
+  copy: src=index.php dest=/var/www/index.php mode=0664
