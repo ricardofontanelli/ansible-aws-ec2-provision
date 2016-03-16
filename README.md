@@ -56,4 +56,4 @@ $ ansible-playbook -i hosts playbook.yml --private-key=[your ssh key file] -vvvv
 ```
 
 # More information:
-Look this [video](https://www.youtube.com/watch?v=sffE27WdUY8) for more information (audio PT-BR and subtitles in EN) or open an issue.
+Look this [video](https://www.youtube.com/watch?v=sffE27WdUY8){:target="_blank"} for more information (audio PT-BR and subtitles in EN) or open an issue.
