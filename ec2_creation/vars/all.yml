@@ -39,7 +39,7 @@ redis:
 php:
     install: '1'
     ppa: php5-5.6
-    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-cgi, php5-common, php5-fpm, php5-gd, php5-geoip, php5-imap, php5-memcache, php5-memcached, php5-snmp, php5-ldap, php-pear, php5-mysql, php5-sqlite, php5-mongo]
-    peclpackages: [PDO, PDO_ODBC, PDO_DBLIB, PDO_MYSQL, PDO_PGSQL, PDO_SQLITE, redis, bz2]
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-cgi, php5-common, php5-fpm, php5-gd, php5-geoip, php5-imap, php5-memcache, php5-memcached, php5-ldap, php-pear, php5-mysql, php5-sqlite, php5-sybase, php5-mongo, php5-redis]
+    peclpackages: [bz2]
 composer:
     install: '1'
